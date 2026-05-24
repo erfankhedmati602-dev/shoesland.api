@@ -21,7 +21,7 @@ exports.register = async (data) => {
 };
 
 exports.login = async (data) => {
-  const user = await User.findOne({ email: data.email });
+  const user = await User.findOne({ phone: data.phone });
   if (!user) throw new Error("User not found");
 
   const match = await bcrypt.compare(data.password, user.password);

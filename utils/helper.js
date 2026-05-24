@@ -21,15 +21,11 @@ exports.checkRegisterInput = (data)=> {
 }
 
 exports.checkLoginInput = (data)=> {
-    // info must be : email , phone number, password
-
+    // info must be : phone number, password
+    if(!data.phone && !data.password) return false;
     // check its not empty
-    if(data.email.trim().length == 0 && data.phone.trim().length == 0) return false;
-
-    // check email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(data.email)) return false;
-
+    if(data.phone.trim().length == 0) return false;
+    
     // check phone number
     const cleanedPhone = data.phone.replace(/[\s\-()]/g, '');
     const phoneRegex = /^\d+$/;
