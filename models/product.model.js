@@ -1,8 +1,8 @@
-const mongoos = require("mongoose");
+const mongoose = require("mongoose");
 
 const allowedCategory = ['men', 'women', 'kids'];
 
-const productSchema = new mongoos.Schema({
+const productSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true
@@ -30,6 +30,9 @@ const productSchema = new mongoos.Schema({
         require: true,
         min: 0
     },
+    images: [{
+        type: String
+    }],
     variants: [{
         sku: {
             type: String,
@@ -38,7 +41,7 @@ const productSchema = new mongoos.Schema({
         },
         size: {
             type: Number,
-            rquire: true
+            require: true
         },
         color: {
             require: true,
@@ -48,7 +51,7 @@ const productSchema = new mongoos.Schema({
             type: Number,
             require: true,
             min: 0,
-            defualt: 0
+            default: 0
         }
     }]
 }, { timestamps: true })
