@@ -32,3 +32,13 @@ exports.uploadProductImage = async (files) => {
 
     return imageUrl;
 }
+
+exports.getProductById = async (params) => {
+    try {
+        const product = await productModel.findById(params)
+        if(!product) throw new Error("Product not find");
+        return {success: true, message: "product found", product: product}
+    } catch (err) {
+        return {success: false, message: err.message, product: null}
+    }
+}

@@ -13,3 +13,10 @@ exports.addProduct = async (req, res)=> {
     if(!data.success) return res.status(400).json(data)
     return res.status(201).json(data.product);
 }
+
+exports.getProductById = async (req, res)=> {
+    const productId = req.params.id;
+    const data = await productService.getProductById(productId);
+    if(!data.success) res.status(404).json(data);
+    res.status(200).json(data);
+}
