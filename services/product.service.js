@@ -42,3 +42,14 @@ exports.getProductById = async (params) => {
         return {success: false, message: err.message, product: null}
     }
 }
+
+exports.getAllProduct = async () => {
+    try {
+        const products = await productModel.find();
+        if(!products || products.length == 0) return {success: false, message: "no pordcut found", product: null};
+
+        return {success: true, message: "porduct found", product: products};
+    } catch (err) {
+        return {success: false, message: err.message, product: null}
+    }
+}
